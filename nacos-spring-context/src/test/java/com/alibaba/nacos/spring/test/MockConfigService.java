@@ -26,6 +26,7 @@ import java.util.concurrent.Executor;
 import org.springframework.util.CollectionUtils;
 
 import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.config.filter.IConfigFilter;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 
@@ -193,6 +194,11 @@ public class MockConfigService implements ConfigService {
 	@Override
 	public String getServerStatus() {
 		return "UP";
+	}
+
+	@Override
+	public void addConfigFilter(IConfigFilter configFilter) {
+
 	}
 
 	@Override

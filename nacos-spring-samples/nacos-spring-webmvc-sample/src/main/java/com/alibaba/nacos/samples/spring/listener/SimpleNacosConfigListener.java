@@ -20,7 +20,7 @@ import static com.alibaba.nacos.api.common.Constants.DEFAULT_GROUP;
 
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;

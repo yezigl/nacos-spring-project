@@ -18,8 +18,8 @@ package com.alibaba.nacos.embedded.web.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 
 import com.alibaba.nacos.embedded.web.server.EmbeddedNacosHttpServer;
 

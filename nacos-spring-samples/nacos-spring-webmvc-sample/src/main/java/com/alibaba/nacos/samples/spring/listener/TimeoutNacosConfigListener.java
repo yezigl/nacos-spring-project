@@ -16,10 +16,10 @@
  */
 package com.alibaba.nacos.samples.spring.listener;
 
+import jakarta.annotation.PostConstruct;
+
 import static com.alibaba.nacos.api.common.Constants.DEFAULT_GROUP;
 import static com.alibaba.nacos.samples.spring.NacosConfiguration.CURRENT_TIME_DATA_ID;
-
-import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

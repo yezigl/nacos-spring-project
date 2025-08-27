@@ -20,12 +20,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${spring6.framework.version}</version>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${spring6.framework.version}</version>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.nacos</groupId>

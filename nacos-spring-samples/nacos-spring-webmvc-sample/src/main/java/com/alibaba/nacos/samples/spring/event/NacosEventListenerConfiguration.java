@@ -16,10 +16,10 @@
  */
 package com.alibaba.nacos.samples.spring.event;
 
-import static com.alibaba.nacos.api.common.Constants.DATAID;
-import static com.alibaba.nacos.api.common.Constants.DEFAULT_GROUP;
+import jakarta.annotation.PostConstruct;
 
-import javax.annotation.PostConstruct;
+import static com.alibaba.nacos.api.common.Constants.DATA_ID;
+import static com.alibaba.nacos.api.common.Constants.DEFAULT_GROUP;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class NacosEventListenerConfiguration {
 	private static final Logger logger = LoggerFactory
 			.getLogger(NacosEventListenerConfiguration.class);
 
-	private static final String DATA_ID = "event-data-id";
+	private static final String EVENT_DATA_ID = "event-data-id";
 
 	@NacosInjected
 	private ConfigService configService;
@@ -56,10 +56,10 @@ public class NacosEventListenerConfiguration {
 	@PostConstruct
 	public void init() throws NacosException {
 		// for NacosConfigReceivedEvent
-		configService.publishConfig(DATA_ID, DEFAULT_GROUP, "Hello,World");
+		configService.publishConfig(EVENT_DATA_ID, DEFAULT_GROUP, "Hello,World");
 
 		// for NacosConfigRemovedEvent
-		configService.removeConfig(DATA_ID, DEFAULT_GROUP);
+		configService.removeConfig(EVENT_DATA_ID, DEFAULT_GROUP);
 
 		Listener listener = new AbstractListener() {
 			@Override
@@ -68,10 +68,10 @@ public class NacosEventListenerConfiguration {
 		};
 
 		// for NacosConfigListenerRegisteredEvent(true)
-		configService.addListener(DATAID, DEFAULT_GROUP, listener);
+		configService.addListener(DATA_ID, DEFAULT_GROUP, listener);
 
 		// for NacosConfigListenerRegisteredEvent(false)
-		configService.removeListener(DATAID, DEFAULT_GROUP, listener);
+		configService.removeListener(DATA_ID, DEFAULT_GROUP, listener);
 	}
 
 	@Bean

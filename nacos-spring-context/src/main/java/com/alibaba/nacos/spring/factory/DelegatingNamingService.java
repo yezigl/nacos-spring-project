@@ -28,6 +28,7 @@ import com.alibaba.nacos.api.naming.listener.EventListener;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.alibaba.nacos.api.naming.pojo.ListView;
 import com.alibaba.nacos.api.naming.pojo.ServiceInfo;
+import com.alibaba.nacos.api.naming.selector.NamingSelector;
 import com.alibaba.nacos.api.selector.AbstractSelector;
 import com.alibaba.nacos.spring.metadata.NacosServiceMetaData;
 
@@ -305,6 +306,16 @@ class DelegatingNamingService
 	}
 
 	@Override
+	public void subscribe(String serviceName, NamingSelector selector, EventListener listener) throws NacosException {
+		delegate.subscribe(serviceName, selector, listener);
+	}
+
+	@Override
+	public void subscribe(String serviceName, String groupName, NamingSelector selector, EventListener listener) throws NacosException {
+		delegate.subscribe(serviceName, groupName, selector, listener);
+	}
+
+	@Override
 	public void unsubscribe(String serviceName, EventListener listener)
 			throws NacosException {
 		delegate.unsubscribe(serviceName, listener);
@@ -326,6 +337,16 @@ class DelegatingNamingService
 	public void unsubscribe(String serviceName, String groupName, List<String> clusters,
 			EventListener listener) throws NacosException {
 		delegate.unsubscribe(serviceName, groupName, clusters, listener);
+	}
+
+	@Override
+	public void unsubscribe(String serviceName, NamingSelector selector, EventListener listener) throws NacosException {
+		delegate.unsubscribe(serviceName, selector, listener);
+	}
+
+	@Override
+	public void unsubscribe(String serviceName, String groupName, NamingSelector selector, EventListener listener) throws NacosException {
+		delegate.unsubscribe(serviceName, groupName, selector, listener);
 	}
 
 	@Override

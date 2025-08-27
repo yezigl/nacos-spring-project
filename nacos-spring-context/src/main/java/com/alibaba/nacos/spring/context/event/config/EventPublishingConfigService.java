@@ -25,6 +25,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.config.filter.IConfigFilter;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.spring.context.event.DeferredApplicationEventPublisher;
@@ -156,6 +157,11 @@ public class EventPublishingConfigService
 	@Override
 	public String getServerStatus() {
 		return configService.getServerStatus();
+	}
+
+	@Override
+	public void addConfigFilter(IConfigFilter configFilter) {
+		configService.addConfigFilter(configFilter);
 	}
 
 	@Override
