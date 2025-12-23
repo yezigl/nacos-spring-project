@@ -17,6 +17,7 @@
 package com.alibaba.nacos.spring.util.parse;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,7 +105,7 @@ public class DefaultXmlConfigParse extends AbstractConfigParse {
 		Map<String, Object> properties = new LinkedHashMap<String, Object>(8);
 		try {
 			Document document = factory.newDocumentBuilder()
-					.parse(new ByteArrayInputStream(configText.getBytes("UTF-8")));
+					.parse(new ByteArrayInputStream(configText.getBytes(StandardCharsets.UTF_8)));
 			Element root = document.getDocumentElement();
 			Map<String, Object> map = new LinkedHashMap<String, Object>(8);
 			recursionXmlToMap(map, root);
@@ -166,8 +167,7 @@ public class DefaultXmlConfigParse extends AbstractConfigParse {
 		else if (data instanceof Map) {
 			Map<String, Object> map = (Map<String, Object>) data;
 			for (Map.Entry<String, Object> entry : map.entrySet()) {
-				String tmpPrefix = StringUtils.isEmpty(prefixName) ? entry.getKey()
-						: prefixName + "." + entry.getKey();
+				String tmpPrefix = StringUtils.hasText(prefixName) ? prefixName + "." + entry.getKey() : entry.getKey();
 				mapToProperties(tmpPrefix, properties, entry.getValue());
 			}
 		}

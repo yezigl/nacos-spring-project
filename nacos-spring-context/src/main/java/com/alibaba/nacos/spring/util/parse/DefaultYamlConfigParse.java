@@ -72,7 +72,7 @@ public class DefaultYamlConfigParse extends AbstractConfigParse {
     protected static boolean process(MatchCallback callback, Yaml yaml, String content) {
         int count = 0;
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Loading from YAML: " + content);
+            LOGGER.debug("Loading from YAML: \n{}", content);
         }
         for (Object object : yaml.loadAll(content)) {
             if (object != null && process(asMap(object), callback)) {
@@ -80,14 +80,14 @@ public class DefaultYamlConfigParse extends AbstractConfigParse {
             }
         }
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Loaded " + count + " document" + (count > 1 ? "s" : "") + " from YAML resource: " + content);
+            LOGGER.debug("Loaded {} document{} from YAML resource: \n{}", count, (count > 1 ? "s" : ""),  content);
         }
         return (count > 0);
     }
 
     protected static boolean process(Map<String, Object> map, MatchCallback callback) {
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Merging document (no matchers set): " + map);
+            LOGGER.debug("Merging document (no matchers set): {}", map);
         }
         callback.process(getFlattenedMap(map));
         return true;
@@ -96,7 +96,7 @@ public class DefaultYamlConfigParse extends AbstractConfigParse {
     @SuppressWarnings("unchecked")
     protected static Map<String, Object> asMap(Object object) {
         // YAML can have numbers as keys
-        Map<String, Object> result = new LinkedHashMap();
+        Map<String, Object> result = new LinkedHashMap<>();
         if (!(object instanceof Map)) {
             // A document can be a text literal
             result.put("document", object);
